@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    kubernetes.io/ingress.class: traefik
+  labels:
+    app: qbittorrent
+  name: qbittorrent
+  namespace: default
+spec:
+  rules:
+  - host: qbittorrent.home-lab.begoodguys.ovh # Change by your domain
+    http:
+      paths:
+      - backend:
+          service:
+            name: qbittorrent
+            port: 
+              number: 80
+        path: /
+        pathType: Prefix  
+  tls:
+  - hosts:
+    - qbittorrent.home-lab.begoodguys.ovh # Change by your domain
+    secretName: letsencryptk3s-qbittorrent-home-lab-ovh-tls-prod
+    
