@@ -1,11 +1,25 @@
 image:
-  repository: lscr.io/linuxserver/qbittorrent
+  repository: linuxserver/qbittorrent # https://hub.docker.com/r/linuxserver/qbittorrent
   pullPolicy: IfNotPresent
   tag: "4.6.5-r0-ls334"
 
+namespace:
+  name: qbittorrent
+
+ingress:
+  enable: true
+  host: qbittorrent.home-lab.begoodguys.ovh
+  tls:
+    enable: true
+    secretName: qbittorrent-home-lab-ovh-tls-prod
+  metadata:
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+      spec.ingressClassName: traefik
+
 service:
   type: ClusterIP
-  port: 3434
+  port: 80
 
 resources:
   limits:
@@ -23,3 +37,19 @@ readinessProbe:
   httpGet:
     path: /
     port: http
+
+volumes:
+  - name: downloads
+    nfs:
+      path: /export/home-lab-nas-runtime/qbittorrent/downloads
+      server: 192.168.2.10
+  - name: appdata
+    nfs:
+      path: /export/home-lab-nas-runtime/qbittorrent/appdata
+      server: 192.168.2.10
+
+volumeMounts:
+  - mountPath: /downloads
+    name: downloads
+  - mountPath: /config
+    name: appdata

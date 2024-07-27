@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: qbittorent
+  name: {{ .Chart.Name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: qbittorrent
+      app: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: qbittorrent
+        app: {{ .Chart.Name }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -23,27 +23,17 @@ spec:
           - name: TZ
             value: "Etc/UTC"
           - name: WEBUI_PORT
-            value: {{ .Values.service.port | quote }}
+            value: "3434"
           - name: TORRENTING_PORT
             value: "6881"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: 3434
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-            - mountPath: /downloads
-              name: downloads
-            - mountPath: /config
-              name: appdata
+            {{- toYaml .Values.volumeMounts | nindent 12 }}
       volumes:
-      - name: downloads
-        nfs:
-          path: /export/home-lab-nas-runtime/qbittorrent/downloads
-          server: 192.168.2.10
-      - name: appdata
-        nfs:
-          path: /export/home-lab-nas-runtime/qbittorrent/appdata
-          server: 192.168.2.10
+        {{- toYaml .Values.volumes | nindent 12 }}
