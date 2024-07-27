@@ -7,7 +7,7 @@ metadata:
   labels:
     app: qbittorrent
   name: qbittorrent
-  namespace: default
+  namespace: qbittorrent
 spec:
   rules:
   - host: qbittorrent.home-lab.begoodguys.ovh # Change by your domain

@@ -1,0 +1,25 @@
+image:
+  repository: lscr.io/linuxserver/qbittorrent
+  pullPolicy: IfNotPresent
+  tag: "4.6.5-r0-ls334"
+
+service:
+  type: ClusterIP
+  port: 3434
+
+resources:
+  limits:
+    cpu: 50m
+    memory: 256Mi
+  requests:
+    cpu: 50m
+    memory: 256Mi
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http

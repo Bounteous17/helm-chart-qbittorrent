@@ -23,7 +23,7 @@ spec:
           - name: TZ
             value: "Etc/UTC"
           - name: WEBUI_PORT
-            value: "3434"
+            value: {{ .Values.service.port | quote }}
           - name: TORRENTING_PORT
             value: "6881"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
