@@ -3,14 +3,14 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
-    kubernetes.io/ingress.class: traefik
+    spec.ingressClassName: traefik
   labels:
     app: qbittorrent
   name: qbittorrent
   namespace: qbittorrent
 spec:
   rules:
-  - host: qbittorrent.home-lab.begoodguys.ovh # Change by your domain
+  - host: qbittorrent.home-lab.begoodguys.ovh
     http:
       paths:
       - backend:
@@ -22,6 +22,6 @@ spec:
         pathType: Prefix  
   tls:
   - hosts:
-    - qbittorrent.home-lab.begoodguys.ovh # Change by your domain
+    - qbittorrent.home-lab.begoodguys.ovh
     secretName: letsencryptk3s-qbittorrent-home-lab-ovh-tls-prod
     
