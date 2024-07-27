@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
           env:
           - name: PUID
             value: "1000"
@@ -33,7 +33,11 @@ spec:
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.persistence.volumeMounts}}
           volumeMounts:
-            {{- toYaml .Values.volumeMounts | nindent 12 }}
+            {{- toYaml .Values.persistence.volumeMounts | nindent 12 }}
+          {{- end}}
+      {{- if .Values.persistence.volumes}}
       volumes:
-        {{- toYaml .Values.volumes | nindent 12 }}
+        {{- toYaml .Values.persistence.volumes | nindent 12 }}
+      {{- end}}
