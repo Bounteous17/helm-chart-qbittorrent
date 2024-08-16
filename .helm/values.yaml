@@ -21,15 +21,15 @@ service:
 
 resources:
   limits:
-    cpu: 50m
-    memory: 256Mi
+    cpu: 600m
+    memory: 1024Mi
   requests:
-    cpu: 50m
-    memory: 256Mi
+    cpu: 600m
+    memory: 1024Mi
 
 livenessProbe:
   httpGet:
-    path: /
+    path: / 
     port: http
 readinessProbe:
   httpGet:
@@ -44,7 +44,7 @@ persistence:
         server: 192.168.2.10
     - name: appdata
       nfs:
-        path: /export/home-lab-nas-runtime/qbittorrent/appdata
+        path: /export/home-lab-nas-runtime/qbittorrent/appdata  
         server: 192.168.2.10
   volumeMounts:
     - mountPath: /downloads
