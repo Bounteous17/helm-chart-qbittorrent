@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   qbittorrent:
   - apiVersion: v2
+    appVersion: 5.0.0
+    created: "2024-10-04T17:41:46.210005839+02:00"
+    description: A Helm chart for Kubernetes
+    digest: 0707eb025df520a9be76e30ab7fe885a8adf82678c19ad119cf2cdb8b39c0f82
+    name: qbittorrent
+    type: application
+    urls:
+    - qbittorrent-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     appVersion: 4.6.5-r0-ls334
     created: "2024-07-27T20:59:54.727321253+02:00"
     description: A Helm chart for Kubernetes
@@ -9,6 +19,6 @@ entries:
     name: qbittorrent
     type: application
     urls:
-    - https://bounteous17.github.io/helm-chart-qbittorrent/.helm/qbittorrent-0.1.0.tgz
+    - qbittorrent-0.1.0.tgz
     version: 0.1.0
 generated: "2024-07-27T20:59:54.727072971+02:00"
