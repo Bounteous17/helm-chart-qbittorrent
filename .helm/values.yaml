@@ -1,10 +1,10 @@
 image:
   repository: linuxserver/qbittorrent 
   pullPolicy: IfNotPresent
-  tag: "4.6.5-r0-ls334"
+  tag: "5.0.0"
 
 namespace:
-  name: qbittorrent
+  name: default
 
 ingress:
   enabled: true
@@ -21,11 +21,11 @@ service:
 
 resources:
   limits:
-    cpu: 600m
-    memory: 1024Mi
-  requests:
-    cpu: 600m
+    cpu: 400m
     memory: 512Mi
+  requests:
+    cpu: 400m
+    memory: 256Mi
 
 livenessProbe:
   httpGet:
