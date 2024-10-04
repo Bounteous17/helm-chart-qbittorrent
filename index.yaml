@@ -9,7 +9,7 @@ entries:
     name: qbittorrent
     type: application
     urls:
-    - qbittorrent-0.2.0.tgz
+    - https://bounteous17.github.io/helm-chart-qbittorrent/.helm/qbittorrent-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
     appVersion: 4.6.5-r0-ls334
@@ -19,6 +19,6 @@ entries:
     name: qbittorrent
     type: application
     urls:
-    - qbittorrent-0.1.0.tgz
+    - https://bounteous17.github.io/helm-chart-qbittorrent/.helm/qbittorrent-0.1.0.tgz
     version: 0.1.0
 generated: "2024-07-27T20:59:54.727072971+02:00"
